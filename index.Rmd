@@ -1,0 +1,35 @@
+---
+title: "Visualización de datos"
+author: "Andrés Roberto Rivera Arrieta - B86559"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Carga de paquetes
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(udunits2)
+library(sf)
+library(DT)
+library(plotly)
+library(leaflet)
+```
+
+## Obteniendo datos
+
+```{r}
+primates_cr <-
+  st_read(
+    "https://raw.githubusercontent.com/gf0604-procesamientodatosgeograficos/2021i-datos/main/gbif/primates-cr-registros.csv", options = c(
+      "X_POSSIBLE_NAMES=decimalLongitude",
+      "Y_POSSIBLE_NAMES=demicalLatitude"
+    ),
+    quiet = TRUE
+  )
+
+st_crs(primates_cr) = 4326
+```
